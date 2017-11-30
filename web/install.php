@@ -16,9 +16,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+require __DIR__.'/../vendor/autoload.php';
 use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
-require __DIR__.'/../vendor/autoload.php';
 $loader = require_once __DIR__.'/../var/bootstrap.php.cache';
 //Debug::enable();
 
