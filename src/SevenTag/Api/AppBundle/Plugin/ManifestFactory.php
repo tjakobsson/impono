@@ -75,12 +75,7 @@ class ManifestFactory implements ManifestFactoryInterface
             'containerjs-configs'
         ]);
 
-        $optionResolver->setAllowedTypes([
-            'name' => 'string',
-            'version' => 'string',
-            'assets-js' => 'array',
-            'containerjs-configs' => 'array'
-        ]);
+        $optionResolver->setAllowedTypes('assets-js', 'containerjs-configs');
 
         return $optionResolver->resolve($manifest);
     }

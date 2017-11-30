@@ -80,3 +80,4 @@ tests/container-debugger/tests/mock/stg.js
 tests/containerjs/mock/tagTree.js
 .vagrant
 provision/playbook.retry
+app/cache
