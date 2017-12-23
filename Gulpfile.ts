@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-/// <reference path="typings/tsd.d.ts" />
+
 
 const WEB_DIR = 'web',
       REPORTS_DIR = 'reports',
@@ -482,7 +482,7 @@ gulp.task(
 
 // --------------- TEMPLATES -----------------------
 
-let jade = require('gulp-jade'),
+let jade = require('gulp-pug'),
     ejs = require('./src/gulp/gulp-ejs'),
     i18n = require('i18n'),
     ngTemplate = require('gulp-ngtemplate'),
@@ -702,7 +702,7 @@ gulp.task(
 
 // --------------- TEST -------------------------
 
-let karma = require('gulp-karma');
+let karma = require('karma');
 
 let adminTestSource = SOURCE_DIR + '/' + ADMIN_NAMESPACE + '/**/*.spec.js',
     debuggerTestSource = TEST_DIR + '/' + DEBUGGER_NAMESPACE + '/**/*.spec.js',
@@ -715,7 +715,7 @@ function testWithCodeCoverage(srcFiles: string[], instrumentedFile: string, cove
 
     return gulp
         .src(srcFiles)
-        .pipe(karma({
+        .pipe(new karma.Server({
             configFile: 'unit.conf.js',
             preprocessors: preprocessors,
             basePath: '.',

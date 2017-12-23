@@ -7,11 +7,11 @@
     <property name="webdir" value="${basedir}/web" />
 
     <condition property="global-env-prod" value="true" else="false">
-        <equals arg1="${env}" arg2="prod"></equals>
+        <equals arg1="${env}" arg2="prod" />
     </condition>
 
     <condition property="global-env" value="prod" else="dev">
-        <equals arg1="${env}" arg2="prod"></equals>
+        <equals arg1="${env}" arg2="prod" />
     </condition>
 
     <target name="info">
@@ -158,8 +158,8 @@
         </exec>
     </target>
 
-    <target name="npm-install" description="Install npm dependencies for project">
-        <exec executable="npm" failonerror="true">
+    <target name="yarn-install" description="Install yarn dependencies for project">
+        <exec executable="yarn" failonerror="true">
             <arg value="install" />
         </exec>
     </target>
@@ -170,13 +170,7 @@
         </exec>
     </target>
 
-    <target name="bower-install" description="Install bower dependencies for project">
-        <exec executable="./node_modules/.bin/bower" failonerror="true">
-            <arg value="install" />
-            <arg value="--force-latest" />
-            <arg value="--allow-root" />
-        </exec>
-    </target>
+
 
     <target name="webdriver-update" description="Install/Update the latest version of webdriver for e2e tests">
         <exec executable="./node_modules/.bin/gulp" failonerror="true">
@@ -196,8 +190,8 @@
         </exec>
     </target>
 
-    <target name="npm-install-containerjs">
-        <exec executable="npm" dir="${basedir}/containerjs" failonerror="true">
+    <target name="yarn-install-containerjs">
+        <exec executable="yarn" dir="${basedir}/containerjs" failonerror="true">
             <arg value="install" />
         </exec>
     </target>
@@ -236,85 +230,85 @@
 
     <target name="download-frontend-dependencies" description="Download frontend dependencies">
         <parallel threadCount="2">
-            <antcall target="bower-install" />
+<!--            <antcall target="bower-install" /> -->
             <antcall target="webdriver-update" />
         </parallel>
     </target>
 
     <target name="tsc-build" description="build typescript files">
         <exec executable="./node_modules/.bin/tsc" failonerror="false">
-            <arg value="-p"></arg>
-            <arg value="./"></arg>
+            <arg value="-p" />
+            <arg value="./" />
         </exec>
     </target>
 
     <target name="e2e" description="Run e2e tests">
         <exec executable="npm" failonerror="true">
-            <arg value="run-script"></arg>
-            <arg value="e2e"></arg>
+            <arg value="run-script" />
+            <arg value="e2e" />
         </exec>
     </target>
 
     <target name="container-mock" description="build container mock for tests">
         <exec executable="./bin/console">
-            <arg value="container:generate:js"></arg>
-            <arg value="43"></arg>
-            <arg value="--env=test"></arg>
+            <arg value="container:generate:js" />
+            <arg value="43" />
+            <arg value="--env=test" />
         </exec>
     </target>
 
     <target name="container-mock-for-debugger-e2e-tests" description="build container mock for e2e debugger tests">
         <exec executable="./bin/console">
-            <arg value="container:generate:js"></arg>
-            <arg value="1"></arg>
+            <arg value="container:generate:js" />
+            <arg value="1" />
         </exec>
     </target>
 
     <target name="tag-tree-mock" description="build tag tree mock for tests">
         <exec executable="./bin/console">
-            <arg value="container:generate:tag-tree"></arg>
-            <arg value="43"></arg>
-            <arg value="--env=test"></arg>
+            <arg value="container:generate:tag-tree" />
+            <arg value="43" />
+            <arg value="--env=test" />
         </exec>
     </target>
 
     <target name="generate-database-scheme" description="generate database with scheme">
         <exec executable="./bin/console">
-            <arg value="cache:clear"></arg>
-            <arg value="--env=test"></arg>
+            <arg value="cache:clear" />
+            <arg value="--env=test" />
         </exec>
         <exec executable="./bin/console">
-            <arg value="doctrine:schema:create"></arg>
-            <arg value="--env=test"></arg>
+            <arg value="doctrine:schema:create" />
+            <arg value="--env=test" />
         </exec>
     </target>
 
     <target name="load-fixtures" description="load fixtures for tests">
         <exec executable="./bin/console">
-            <arg value="doctrine:fixtures:load"></arg>
-            <arg value="--no-interaction"></arg>
-            <arg value="--env=test"></arg>
+            <arg value="doctrine:fixtures:load" />
+            <arg value="--no-interaction" />
+            <arg value="--env=test" />
         </exec>
     </target>
 
     <target name="clear-database" description="clear database">
         <exec executable="./bin/console">
-            <arg value="doctrine:database:drop"></arg>
-            <arg value="--force"></arg>
+            <arg value="doctrine:database:drop"/>
+            <arg value="--force"/>
         </exec>
         <exec executable="./bin/console">
-            <arg value="doctrine:database:create"></arg>
+            <arg value="doctrine:database:create"/>
         </exec>
         <exec executable="./bin/console">
-            <arg value="doctrine:schema:create"></arg>
+            <arg value="doctrine:schema:create"/>
         </exec>
     </target>
 
     <target name="load-fixtures-for-e2e-debugger-tests" description="Load fixtures for e2e debugger tests">
         <exec executable="./bin/console">
-            <arg value="doctrine:fixtures:load"></arg>
-            <arg value="--fixtures=src/SevenTag/Api/TestBundle/DataFixtures/e2e-debugger"></arg>
-            <arg value="--no-interaction"></arg>
+            <arg value="doctrine:fixtures:load"/>
+            <arg value="--fixtures=src/SevenTag/Api/TestBundle/DataFixtures/e2e-debugger"/>
+            <arg value="--no-interaction"/>
         </exec>
     </target>
 
@@ -326,8 +320,8 @@
 
     <target name="doctrine-schema-dump">
         <exec executable="${bindir}/console" failonerror="true" output="${basedir}/app/Resources/schema.sql">
-            <arg value="doctrine:schema:create"></arg>
-            <arg value="--dump-sql"></arg>
+            <arg value="doctrine:schema:create" />
+            <arg value="--dump-sql" />
         </exec>
     </target>
 
@@ -338,7 +332,7 @@
                 <antcall target="vendors" />
             </sequential>
             <sequential>
-                <antcall target="npm-install" />
+                <antcall target="yarn-install" />
                 <antcall target="tsc-build" />
                 <antcall target="download-frontend-dependencies" />
                 <antcall target="build-frontend" />
@@ -349,7 +343,7 @@
 
     <target name="tests-task" description="Run tests">
         <parallel threadCount="2">
-            <antcall target="npm-install-containerjs" />
+            <antcall target="yarn-install-containerjs" />
             <sequential>
                 <antcall target="phpunit" />
                 <antcall target="generate-database-scheme" />
@@ -385,32 +379,32 @@
 
     <target name="prepare-db">
         <exec executable="./bin/console">
-            <arg value="doctrine:schema:update"></arg>
-            <arg value="--force"></arg>
+            <arg value="doctrine:schema:update" />
+            <arg value="--force" />
         </exec>
         <exec executable="./bin/console">
-            <arg value="doctrine:migrations:migrate"></arg>
-            <arg value="--no-interaction"></arg>
+            <arg value="doctrine:migrations:migrate" />
+            <arg value="--no-interaction" />
         </exec>
         <exec executable="./bin/console">
-            <arg value="doctrine:fixtures:load"></arg>
-            <arg value="--no-interaction"></arg>
+            <arg value="doctrine:fixtures:load" />
+            <arg value="--no-interaction" />
         </exec>
         <exec executable="./bin/console">
-            <arg value="c:c"></arg>
-            <arg value="--env=prod"></arg>
+            <arg value="c:c" />
+            <arg value="--env=prod" />
         </exec>
     </target>
 
     <target name="e2e-selenium-task-chrome" description="run e2e tests on docker selenium">
         <exec executable="./node_modules/.bin/gulp">
-            <arg value="tests:e2e-admin-selenium-chrome"></arg>
+            <arg value="tests:e2e-admin-selenium-chrome" />
         </exec>
     </target>
 
     <target name="e2e-selenium-task-firefox" description="run e2e tests on docker selenium">
         <exec executable="./node_modules/.bin/gulp">
-            <arg value="tests:e2e-admin-selenium-firefox"></arg>
+            <arg value="tests:e2e-admin-selenium-firefox" />
         </exec>
     </target>
 
