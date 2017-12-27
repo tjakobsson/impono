@@ -1,4 +1,4 @@
-include ../../../views/_mixins.jade
+include ../../../views/_mixins.pug
 
 div(ng-controller="clearcode.tm.tagContainer.PermissionsController as permissionsCtrl")
     .alert.alert-info.alert-empty(ng-if="!permissionsCtrl.usersTable.settings().$loading && permissionsCtrl.usersTable.total() === 0")

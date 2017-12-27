@@ -33,7 +33,7 @@ p.alert.alert-synchronous-tag-warning(ng-if="triggerForm.trigger.isAddedToSynchr
                 placement="right"
                 content="{{'Synchronous tags are compatible only with triggers of \"Page view\" type. You are not able to choose firing synchronous tags on \"Click\", \"Sending form\" or \"Event\".'|translate}}",
             )
-        include ../../condition/views/create.jade
+        include ../../condition/views/create.pug
 .stepper-step(ng-if="!triggerForm.showFormForSynchronousTrigger()")
     .stepper-index
         span 2
@@ -92,4 +92,4 @@ p.alert.alert-synchronous-tag-warning(ng-if="triggerForm.trigger.isAddedToSynchr
                 placement="right"
                 content="{{'Add a condition(s) for firing your tag(s). You can add extra rules like firing on certain pages, clicking on a defined element, and many more.'|translate}}",
             )
-        include ../../condition/views/create.jade
+        include ../../condition/views/create.pug

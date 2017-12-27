@@ -1,4 +1,4 @@
-include ../../../views/_mixins.jade
+include ../../../views/_mixins.pug
 
 - var LOADING_PROMISE = 'view.tagPromise';
 - var FORM_TITLE = '{{"Add a new tag"|translate}}';
@@ -13,7 +13,7 @@ include ../../../views/_mixins.jade
             h4.form-heading(ng-hide="view.success")
                 | !{FORM_TITLE}
 
-            include _form.jade
+            include _form.pug
 
             .form-group(ng-if="currentContainer.$container.hasPermission('edit')")
                 hr.divider

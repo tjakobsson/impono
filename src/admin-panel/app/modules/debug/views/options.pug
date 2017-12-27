@@ -1,4 +1,4 @@
-include ../../../views/_mixins.jade
+include ../../../views/_mixins.pug
 
 - var LOADING_PROMISE = 'view.containerPromise';
 - var FORM_TITLE = 'Debug options';
@@ -18,4 +18,4 @@ include ../../../views/_mixins.jade
                     content="{{'Please enter URLs of your website(s), on which you implemented the container. You can also select the way in which the debug URL parameter is appended - through hash or as parameter.'|translate}}",
                 )
 
-            include websites.jade
+            include websites.pug

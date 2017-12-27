@@ -1,4 +1,4 @@
-include ../../../views/_mixins.jade
+include ../../../views/_mixins.pug
 
 - var LOADING_PROMISE = 'view.integrationPromise';
 - var FORM_TITLE = '{{"Edit integration"|translate}}';
@@ -15,7 +15,7 @@ include ../../../views/_mixins.jade
             h4.form-heading(ng-hide="view.success")
                 | !{FORM_TITLE}
 
-            include _form.jade
+            include _form.pug
 
             hr.divider
             .form-group

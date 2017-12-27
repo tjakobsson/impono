@@ -1,4 +1,4 @@
-include ../../../views/_mixins.jade
+include ../../../views/_mixins.pug
 
 - var LOADING_PROMISE = 'view.profilePromise';
 - var FORM_TITLE = '{{"Your profile"|translate}}';
@@ -27,7 +27,7 @@ include ../../../views/_mixins.jade
                 .panel-body
                     cc-notification-form
                     
-                    include _form.jade
+                    include _form.pug
 
                     hr.divider
                     .form-group
@@ -41,7 +41,7 @@ include ../../../views/_mixins.jade
                 .panel-body(ng-controller="clearcode.tm.user.OthersSettingsController as othersSettings")
                     cc-notification-form
 
-                    include othersSettings.jade
+                    include othersSettings.pug
 
                     hr.divider
                     .form-group
@@ -55,7 +55,7 @@ include ../../../views/_mixins.jade
                 .panel-body(ng-controller="clearcode.tm.user.ChangePasswordController as changePassword")
                     cc-notification-form
 
-                    include changePassword.jade
+                    include changePassword.pug
 
                     hr.divider
                     .form-group

@@ -1,4 +1,4 @@
-include ../../../views/_mixins.jade
+include ../../../views/_mixins.pug
 
 - var LOADING_PROMISE = 'view.containerPromise';
 - var FORM_TITLE = 'Edit options';
@@ -109,7 +109,7 @@ include ../../../views/_mixins.jade
                 .panel-body
                     cc-notification-form(ng-if="$state.includes('editProfile')" ng-show="!view.loading")
 
-                    include permissions.jade
+                    include permissions.pug
 
 .row(ng-if="!currentContainer.$container.hasPermission('operator')")
     .panel.panel-default(cg-busy="{promise: #{LOADING_PROMISE}, templateUrl: \"app/views/loader.html\"}")
@@ -121,4 +121,4 @@ include ../../../views/_mixins.jade
             +form(
                 FORM_NAME
             )(stg-form, form-resource="#{FORM_RESOURCE}")
-                include edit.jade
+                include edit.pug

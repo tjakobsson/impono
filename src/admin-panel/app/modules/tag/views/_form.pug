@@ -12,7 +12,7 @@
 - var TRIGGER_CREATE_RESOURCE = 'triggerForm.triggerPromise';
 - var TRIGGER_EDIT_RESOURCE = 'triggerForm.editTriggerPromise';
 
-include _templateChoosePanel.jade
+include _templateChoosePanel.pug
 
 +form(
     FORM_NAME
@@ -223,7 +223,7 @@ div(
                 TRIGGER_CREATE_FORM
             )(stg-form, form-resource="#{TRIGGER_CREATE_RESOURCE}")
                 - TRIGGER_FORM_NAME = TRIGGER_CREATE_FORM
-                include ../../trigger/views/_form.jade
+                include ../../trigger/views/_form.pug
                 .form-group
                     +button('primary')#trigger-form-add-related-tag-button(translate='Add', ng-click="triggerForm.validateTrigger(#{TRIGGER_CREATE_FORM}) ? triggerForm.addTrigger(#{FORM_NAME}, triggerForm.trigger) : triggerForm.displayInvalidFormMessage(view)")
                     +button#trigger-form-cancel-button(translate='Cancel', ng-click="view.showTriggerForm = triggerForm.leaveFormInsideTag()")
@@ -235,7 +235,7 @@ div(
                 TRIGGER_CREATE_FORM
             )(stg-form, form-resource="#{TRIGGER_CREATE_RESOURCE}")
                 - TRIGGER_FORM_NAME = TRIGGER_CREATE_FORM
-                include ../../trigger/views/_form.jade
+                include ../../trigger/views/_form.pug
                 .form-group
                     +button('primary')#trigger-form-add-related-tag-button(translate='Add', ng-click="triggerForm.trigger.type=0;triggerForm.validateTrigger(#{TRIGGER_CREATE_FORM}) ? triggerForm.addTrigger(#{FORM_NAME}, triggerForm.trigger) : triggerForm.displayInvalidFormMessage(view)")
                     +button#trigger-form-cancel-button(translate='Cancel', ng-click="view.showTriggerForm = triggerForm.leaveFormInsideTag()")
@@ -250,10 +250,10 @@ div(
                 TRIGGER_EDIT_FORM
             )(stg-form, form-resource="#{TRIGGER_EDIT_RESOURCE}")
                 - TRIGGER_FORM_NAME = TRIGGER_EDIT_FORM
-                include ../../trigger/views/_form.jade
+                include ../../trigger/views/_form.pug
                 .form-group
                     +button('primary')#trigger-form-edit-button(translate='Save', ng-if="currentContainer.$container.hasPermission('edit')" ng-click="triggerForm.validateTrigger(#{TRIGGER_EDIT_FORM}, view.conditionLength) ? triggerForm.submitForm(triggerForm.trigger) : view.validateTriggers = true")
-                    +button(translate='Cancel')(ng-click="view.editTriggerForm = false")
+                    +button(translate='Cancel', ng-click="view.editTriggerForm = false")
 
         .stepper-subform(
             ng-if="view.showListTriggersForm",
@@ -261,7 +261,7 @@ div(
             .pageview-triggers-sync-tags-warning(ng-if="view.isTagTemplateTabActive('sync')")
                 p {{"Please note, synchronous tags are compatible only with triggers of \"Page view\" type."|translate}}
                 p {{"Triggers of other types will not be displayed here."|translate}}
-            include ../../trigger/views/chooseExisting.jade
+            include ../../trigger/views/chooseExisting.pug
 
         div(
             ng-if="!view.showTriggerForm && !view.showListTriggersForm && !view.editTriggerForm"
