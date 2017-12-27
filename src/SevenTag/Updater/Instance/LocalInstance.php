@@ -99,7 +99,6 @@ class LocalInstance implements InstanceInterface
             'app/config/parameters.yml',
             'version.json',
             'updater_backup.zip',
-            '/(?<!admin-panel\/)bower_components/',
             '/(?<!admin-panel\/)node_modules/'
         ];
 

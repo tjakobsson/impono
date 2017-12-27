@@ -58,7 +58,6 @@ class CurrentVersionBackupStep extends LocalInstanceStep
             ->ignoreVCS(true);
 
         $notPaths = [
-            '/(?<!admin-panel\/)bower_components/',
             '/(?<!admin-panel\/)node_modules/'
         ];
 
